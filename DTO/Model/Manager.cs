@@ -29,8 +29,7 @@ namespace DTO.Model
             other.Email = this.Email;
             other.ID = this.ID;
             other.Name = this.Name;
-            //other.Password = null;
-            //other.Salt = Guid.Empty;
+            
             other.TimeInsert = this.TimeInsert;
             other.TimeUpdate = this.TimeUpdate;
             return other;
