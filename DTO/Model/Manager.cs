@@ -22,13 +22,7 @@ namespace DTO.Model
                 && obj.TimeUpdate == this.TimeUpdate
                 && obj.TimeInsert == this.TimeInsert;
         }
-        /*
-        public static byte[] hash(string pass, string salt)
-        {
-            var algorithm = SHA512.Create();
-            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(pass + salt));
-        }
-        */
+       
         public Manager CopyElem()
         {
             Manager other = new Manager();
