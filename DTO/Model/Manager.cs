@@ -8,8 +8,8 @@ namespace DTO.Model
     {
         public int ID { get; set; } = 0;
         public string Name { get; set; } = "";
-        //public byte[] Password { get; set; }
-        //public Guid Salt { get; set; }
+        public byte[] Password { get; set; }
+        public Guid Salt { get; set; }
         public string Email { get; set; } = "";
         public DateTime TimeInsert { get; set; }
         public DateTime TimeUpdate { get; set; }
@@ -22,7 +22,12 @@ namespace DTO.Model
                 && obj.TimeUpdate == this.TimeUpdate
                 && obj.TimeInsert == this.TimeInsert;
         }
-       
+
+        public static byte[] hash(string pass, string salt)
+        {
+            var algorithm = SHA512.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(pass + salt));
+        }
         public Manager CopyElem()
         {
             Manager other = new Manager();
@@ -32,6 +37,8 @@ namespace DTO.Model
             
             other.TimeInsert = this.TimeInsert;
             other.TimeUpdate = this.TimeUpdate;
+            other.Password = null;
+            other.Salt = Guid.Empty;
             return other;
         }
     }

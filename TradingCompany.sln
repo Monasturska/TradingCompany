@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLogic", "DataAccessLogic\DataAccessLogic.csproj", "{65CB4946-3CCE-43D7-A526-56F13402A1D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{BE2FE954-899A-4225-9E4F-481B3CF0187A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{BE2FE954-899A-4225-9E4F-481B3CF0187A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLLServiceManager", "BLLServiceManager\BLLServiceManager.csproj", "{7917F18E-27AF-408B-9AC6-5F5E19A6F20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagerWPFWork", "ManagerWPFWork\ManagerWPFWork.csproj", "{FCDE0E58-8B3D-4016-B68D-BDA717A99811}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{BE2FE954-899A-4225-9E4F-481B3CF0187A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2FE954-899A-4225-9E4F-481B3CF0187A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2FE954-899A-4225-9E4F-481B3CF0187A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7917F18E-27AF-408B-9AC6-5F5E19A6F20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7917F18E-27AF-408B-9AC6-5F5E19A6F20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7917F18E-27AF-408B-9AC6-5F5E19A6F20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7917F18E-27AF-408B-9AC6-5F5E19A6F20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCDE0E58-8B3D-4016-B68D-BDA717A99811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDE0E58-8B3D-4016-B68D-BDA717A99811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDE0E58-8B3D-4016-B68D-BDA717A99811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDE0E58-8B3D-4016-B68D-BDA717A99811}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

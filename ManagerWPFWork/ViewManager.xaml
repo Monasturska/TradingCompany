@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="ManagerWPFWork.ViewManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagerWPFWork"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="800"></ColumnDefinition>
+                <ColumnDefinition  Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid  Style="{StaticResource DataGridAll}" 
+                Grid.Column="0"
+                 x:Name="Imported"  
+                 ItemsSource="{Binding Managers}"
+                 SelectedItem="{Binding SelectedManagers}" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="ID" Width ="35" Binding="{Binding Path=ID}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Name" Width ="125" Binding="{Binding Path=Name}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="Email" Width ="170" Binding="{Binding Path=Email}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="InsertTime" Width ="200" Binding="{Binding Path=TimeInsert}"/>
+                    <DataGridTextColumn FontFamily="Times new roman" Header="UpdateTime" Width ="200" Binding="{Binding Path=TimeUpdate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Column="1">
+
+            </Grid>
+        </Grid>
+        <Button 
+            Grid.Row="0"
+            Height="40"
+            Content="Staff"
+             FontSize="15"
+            FontFamily="Times new roman"
+            Command="{Binding GetBooks}"></Button>
+
+    </Grid>
+</UserControl>

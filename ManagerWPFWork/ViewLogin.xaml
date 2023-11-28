@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="ManagerWPFWork.ViewLogin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManagerWPFWork"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="Ivory">
+        <Grid HorizontalAlignment="Center"
+          Margin="0,100,0,0" >
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="80">
+
+                </RowDefinition>
+                <RowDefinition Height="160">
+
+                </RowDefinition>
+                <RowDefinition Height="70">
+
+                </RowDefinition>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"></ColumnDefinition>
+                    <ColumnDefinition  Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Border  Grid.Row="0" 
+                 Style="{StaticResource BorderAll}"
+                 HorizontalAlignment="Center"
+                 Height="80" 
+                 Width="500">
+                <TextBlock Style="{StaticResource TextBlockAll}"
+                       FontSize ="40" 
+                       Height="50" 
+                       Margin="53,8,0,0" 
+                       TextWrapping="Wrap" 
+                       Text="Wellcome back!"
+                       VerticalAlignment="Top" 
+                       Width="300"/>
+            </Border>
+
+
+
+            <Grid Grid.Row="1" >
+                <TextBlock x:Name="textBlock"
+                    Style="{StaticResource TextBlockAll}" 
+                    Margin="140,90,0,0" 
+                    Width="140"
+                    Height="45"
+                    Text="Password"
+                    FontSize="30"/>
+                <TextBlock x:Name="textBlock1"
+                    FontSize="30"
+                    Height="45"
+                    Style="{StaticResource TextBlockAll}" 
+                    Margin="170,33,0,0" 
+                    Text="Login"/>
+                <Image  x:Name="image"  
+                Style="{StaticResource ImageAll}"
+                Source="D:\source\repos\TradingCompany\image\passwordLogin.png"
+                Margin="30,80,0,0"/>
+                <Image  Grid.Row="1"
+                Height="65"
+                x:Name="image1" 
+                Style="{StaticResource ImageAll}" 
+                Source="D:\source\repos\TradingCompany\image\peopleEmail.png"  
+                Margin="30,15,0,0" />
+                <StackPanel  >
+
+                    <TextBox x:Name="textBox_Login"
+                  Style="{StaticResource TextBoxAll}"
+                  Height="30" 
+                  Text="{Binding EmailEntered,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                  Width="160"
+                  FontSize="30"
+                  Margin="300,33,0,0"/>
+                    <TextBox  Grid.Row="1" 
+                  x:Name="textBox_Pass"
+                  Text="{Binding PasswordEntered,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                  Style="{StaticResource TextBoxAll}"
+                  Height="30" 
+                  FontSize="30"
+                  Width="160"
+                  Margin="300,30,0,0"/>
+                </StackPanel>
+
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button  x:Name="button_SingIn"
+                 FontSize="26"
+                 Style="{StaticResource ButtonAll}"
+                 Content="Sing in" 
+                 Command="{Binding LogginManager}"
+                 IsEnabled="{Binding ActionAllowed}"
+                 CommandParameter="SingIN"
+                 Height="40" 
+                 Margin="162,1,0,0" 
+                 Width="160" />
+            </Grid>
+            <Grid Grid.Row="3" DataContext="{Binding SelectedProduct}">
+                <TextBlock  
+                    Grid.Column="0"
+                    x:Name="textBlock2"
+                    Style="{StaticResource TextBlockAll}"
+                    FontSize="13"
+                    Height="25"
+                    Margin="21,0,0,0"
+                    Text="Do not have an account?" 
+                    Width="139"/>
+
+                <Button  x:Name="Button_Register"
+                    Style="{StaticResource ButtonAll}" 
+                    FontSize="14"
+                    FontStyle="Italic" 
+                    Height="17" 
+                    Margin="165,0,0,0" 
+                    Content="Click" 
+                    Width="59"
+                    IsEnabled="False" 
+                   />
+            </Grid>
+
+        </Grid>
+    </Border>
+</UserControl>

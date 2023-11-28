@@ -28,27 +28,40 @@ namespace UnitTest
         {
 
             Product temp = new Product();
-            string nameM = "Pork";
-            temp.NameObj = nameM;
+            temp.Id = -1;
+            
+            temp.NameObj = "ch";
             temp.CategoryID = 2;
-            temp.PriceIn = 190;
+            temp.SupplierID = 1;
+            temp.PriceIn = 100;
             temp.PriceOut = 130;
+            temp.RowInsertTime = DateTime.Now;
+            temp.RowUpdateTime = DateTime.Now;
 
+
+            var nameM = temp.NameObj;
             products.AddObj(temp);
             var tempObj = products.GetProducts().Find(x => x.NameObj == nameM);
-            Assert.IsNotNull(tempObj);
+            Assert.IsTrue(nameM == tempObj.NameObj);
         }
          [TestMethod]
         public void TestMethod_RemoveValue()
         {
             Product temp = new Product();
-            string nameM = "ckolate";
-            temp.NameObj = nameM;
+            temp.Id = -1;
+
+            temp.NameObj = "ch1";
+           
             temp.CategoryID = 2;
+            temp.SupplierID = 1;
+
             temp.PriceIn = 12;
             temp.PriceOut = 15;
+            temp.RowInsertTime = DateTime.Now;
+            temp.RowUpdateTime = DateTime.Now;
             products.AddObj(temp);
 
+            var nameM = temp.NameObj;
             var tempObj = products.GetProducts().Find(x => x.NameObj == nameM);
             products.DeleteObject(tempObj.Id);
             var tempObjDel = products.GetProducts().Find(x => x.NameObj == nameM);

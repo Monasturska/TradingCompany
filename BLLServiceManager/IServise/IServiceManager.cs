@@ -1,9 +1,13 @@
 ﻿using DTO.Model;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccessLogic.Interfaces
+namespace BLLServiceManager.IServise
 {
-    public interface IManagerDAL
+    public interface IServiceManager
     {
         List<Manager> GetProducts();
         List<Manager> GetProductsWithoutPassword();
@@ -11,8 +15,7 @@ namespace DataAccessLogic.Interfaces
         void DeleteObject(int id);
         void ReadFromDataBase();
         Manager GetObj(string idT);
-
-        bool IsLogin(string email, string password);
         Manager GetObjById(int id);
+        bool IsLogin(string Email, string Password);
     }
 }

@@ -32,8 +32,8 @@ namespace DataAccessLogic.ADO
                     using (SqlCommand comm = connectionSql.CreateCommand())
                     {
                         connectionSql.Open();
-                        comm.CommandText = "select PersonId,PersonName,Salt,Password,Email," +
-                            "RowInsertTime,RowUpdateTime from Manager";
+                        comm.CommandText = "select PersonId,PersonName,Email," +
+                            "RowInsertTime,RowUpdateTime,Password,Salt from Manager";
 
                         SqlDataReader reader = comm.ExecuteReader();
                         while (reader.Read())
@@ -41,11 +41,13 @@ namespace DataAccessLogic.ADO
                             Manager tempManager = new Manager();
                             tempManager.ID = (int)reader["PersonId"];
                             tempManager.Name = (string)reader["PersonName"];
-                            //tempManager.Salt = (Guid)reader["Salt"];
-                            //tempManager.Password = (byte[])reader["Password"];
+                            
                             tempManager.Email = (string)reader["Email"];
                             tempManager.TimeInsert = (DateTime)reader["RowInsertTime"];
                             tempManager.TimeUpdate = (DateTime)reader["RowInsertTime"];
+                            tempManager.Password = (byte[])reader["Password"];
+                            tempManager.Salt = (Guid)reader["Salt"];
+                           
                             managers.Add(tempManager);
                         }
                     }
@@ -65,15 +67,16 @@ namespace DataAccessLogic.ADO
                 using (SqlCommand comm = connectionSql.CreateCommand())
                 {
                     connectionSql.Open();
-                    comm.CommandText = "insert into Manager (PersonName,Salt,Password,Email,RowInsertTime,RowUpdateTime) " +
-                        "values(@perName,@salt,@password,@email,@timeInsert,@timeUpdate)";
+                    comm.CommandText = "insert into Manager (PersonName,Email,RowInsertTime,RowUpdateTime,Password,Salt) " +
+                        "values(@perName,@email,@timeInsert,@timeUpdate,@password,@salt)";
                     comm.Parameters.Clear();
                     comm.Parameters.AddWithValue("@perName", tempObj.Name);
-                    //comm.Parameters.AddWithValue("@salt", tempObj.Salt);
-                    //comm.Parameters.AddWithValue("@password", tempObj.Password);
-                    comm.Parameters.AddWithValue("@email", tempObj.Email);
+                    comm.Parameters.AddWithValue("@salt", tempObj.Salt);
+                    
                     comm.Parameters.AddWithValue("@timeInsert", tempObj.TimeInsert);
                     comm.Parameters.AddWithValue("@timeUpdate", tempObj.TimeUpdate);
+                    comm.Parameters.AddWithValue("@password", tempObj.Password);
+                    comm.Parameters.AddWithValue("@salt", tempObj.Salt);
                     comm.ExecuteNonQuery();
                 }
             }
@@ -133,7 +136,41 @@ namespace DataAccessLogic.ADO
             return tempObj;
         }
 
-        
-        
+        public bool IsLogin(string email, string password)
+        {
+            bool hasAcc = true;
+            var tempObj = managers.Where(x => x.Email == email).SingleOrDefault();
+
+            if (tempObj == null)
+            {
+
+                hasAcc = false;
+            }
+            else
+            {
+
+                Byte[] passUser = hash(password, tempObj.Salt.ToString());
+                hasAcc = true;
+
+                if (email == tempObj.Email)
+                {
+                    for (int i = 0; i < passUser.Length; i++)
+                    {
+                        if (passUser[i] != tempObj.Password[i])
+                        {
+                            hasAcc = false;
+                        }
+                    }
+                }
+            }
+            return hasAcc;
+
+        }
+        private byte[] hash(string pass, string salt)
+        {
+            var algorithm = SHA256.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(pass + salt));
+        }
+
     }
 }
